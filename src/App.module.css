@@ -1,0 +1,12 @@
+.section {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-user-select: none;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
