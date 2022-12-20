@@ -1,0 +1,16 @@
+.btn-addcard:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-addcard {
+    background-color: transparent;
+    width: 45px;
+    height: 62px;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.btn-addcard:active {
+    background-color: black;
+}
