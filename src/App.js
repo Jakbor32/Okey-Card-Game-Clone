@@ -8,9 +8,9 @@ import styles from './../src/App.module.css';
 
 const App = () => {
 
-  const [selectedCards, setSelectedCards] = useState([])
-  const [runSelectRandomCards, setRunSelectRandomCards] = useState(false)
-
+  const [selectedCards, setSelectedCards] = useState([]);
+  const [runSelectRandomCards, setRunSelectRandomCards] = useState(false);
+  const [remainingCards, setRemainingCards] = useState([]);
   // select 5 random cards from the board
 
   const selectRandomCards = () => {
@@ -22,6 +22,7 @@ const App = () => {
       cards.splice(index, 1);
     }
     setSelectedCards(selected);
+    setRemainingCards(cards);
   };
 
   // run after click addCard button
@@ -36,9 +37,49 @@ const App = () => {
   // Add 5 cards to the game table
 
   const addCard = () => {
-    setRunSelectRandomCards(true)
+    setRunSelectRandomCards(true);
 
+    const randomCards = [];
 
+    let emptySpaces = selectedCards.filter(
+      (card) => card.id === undefined).length;
+
+    for (let i = 0; i < emptySpaces; i++) {
+      if (remainingCards.length === 0) break;
+      const index = Math.floor(Math.random() * remainingCards.length);
+      randomCards.push(remainingCards[index]);
+      remainingCards.splice(index, 1);
+    }
+
+    const newSelectedCards = [...selectedCards];
+    for (let i = 0; i < newSelectedCards.length; i++) {
+      if (newSelectedCards[i].id === undefined && randomCards.length > 0) {
+        newSelectedCards[i] = randomCards.shift();
+      }
+    }
+
+    setSelectedCards(newSelectedCards);
+    for (let i = 0; i < remainingCards.length; i++) {
+      if (selectedCards.includes(remainingCards[i])) {
+        remainingCards.splice(i, 1);
+        i--;
+      }
+    }
+    setRemainingCards(remainingCards);
+
+  };
+
+  // Delete the card by right clicking with the mouse
+
+  const RemoveHandler = (id) => {
+    if (id) {
+      const cardIndex = selectedCards.findIndex((c) => c.id === id);
+      if (cardIndex !== -1) {
+        const newSelectedCards = [...selectedCards];
+        newSelectedCards.splice(cardIndex, 1, {});
+        setSelectedCards(newSelectedCards);
+      }
+    }
   };
 
   return (
@@ -52,7 +93,7 @@ const App = () => {
             return (
               <Cards
                 key={card.id}
-                onContextClick={() => console.log("PPM")}
+                onContextClick={RemoveHandler}
                 onClick={() => console.log("LPM")}
                 cardId={card.id}
                 cardColor={card.color}
