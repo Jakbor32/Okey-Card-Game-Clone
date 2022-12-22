@@ -10,3 +10,9 @@
     align-items: center;
 
 }
+
+.card-selected {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

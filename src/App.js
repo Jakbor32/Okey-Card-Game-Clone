@@ -11,6 +11,8 @@ const App = () => {
   const [selectedCards, setSelectedCards] = useState([]);
   const [runSelectRandomCards, setRunSelectRandomCards] = useState(false);
   const [remainingCards, setRemainingCards] = useState([]);
+
+  const [inGameCards, setInGameCards] = useState([]);
   // select 5 random cards from the board
 
   const selectRandomCards = () => {
@@ -82,6 +84,48 @@ const App = () => {
     }
   };
 
+  // After clicking add a card to the game / undo a card from the game
+
+  const inGame = (id) => {
+    const cardOnTable = inGameCards.find((c) => c.id === id);
+
+    if (cardOnTable) {
+      const newInGameCards = inGameCards.filter((c) => c.id !== id);
+      setInGameCards(newInGameCards);
+
+      const newSelectedCards = [...selectedCards];
+      let emptyIndex = -1;
+      for (let i = 0; i < newSelectedCards.length; i++) {
+        if (newSelectedCards[i].id === undefined) {
+          emptyIndex = i;
+          break;
+        }
+      }
+
+      if (emptyIndex !== -1) {
+        newSelectedCards.splice(emptyIndex, 1, cardOnTable);
+      } else {
+        newSelectedCards.push(cardOnTable);
+      }
+      setSelectedCards(newSelectedCards);
+    } else {
+      const cardIndex = selectedCards.findIndex((c) => c.id === id);
+      moveCardToInGame(selectedCards[cardIndex]);
+    }
+  };
+
+  // Move card to game 
+  const moveCardToInGame = (card) => {
+    console.log(inGameCards);
+    const cardIndex = selectedCards.findIndex((c) => c.id === card.id);
+    if (cardIndex !== -1 && card.id !== undefined && inGameCards.length < 3) {
+      const newSelectedCards = [...selectedCards];
+      newSelectedCards.splice(cardIndex, 1, {});
+      setSelectedCards(newSelectedCards);
+      setInGameCards([...inGameCards, card]);
+    }
+  };
+
   return (
     <>
       <section className={styles.section} onContextMenu={(e) => e.preventDefault()}>
@@ -94,10 +138,26 @@ const App = () => {
               <Cards
                 key={card.id}
                 onContextClick={RemoveHandler}
-                onClick={() => console.log("LPM")}
+                onClick={inGame}
                 cardId={card.id}
                 cardColor={card.color}
                 cardNr={card.number}
+                cardWidth={card.width}
+                cardHeight={card.height}
+              />
+            );
+          })}
+        </div>
+        <div className={styles["card-selected"]}>
+          {inGameCards.map((card) => {
+            return (
+              <Cards
+                onContextClick={RemoveHandler}
+                onClick={inGame}
+                cardId={card.id}
+                cardColor={card.color}
+                cardNr={card.number}
+                key={card.id}
                 cardWidth={card.width}
                 cardHeight={card.height}
               />
