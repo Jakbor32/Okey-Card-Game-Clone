@@ -43,8 +43,19 @@ const App = () => {
 
     const randomCards = [];
 
+
+
     let emptySpaces = selectedCards.filter(
       (card) => card.id === undefined).length;
+
+    emptySpaces +=
+      inGameCards.length === 1
+        ? -1
+        : inGameCards.length === 2
+          ? -2
+          : inGameCards.length === 3
+            ? -3
+            : 0;
 
     for (let i = 0; i < emptySpaces; i++) {
       if (remainingCards.length === 0) break;
