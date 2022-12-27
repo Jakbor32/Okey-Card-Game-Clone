@@ -127,7 +127,6 @@ const App = () => {
 
   // Move card to game 
   const moveCardToInGame = (card) => {
-    console.log(inGameCards);
     const cardIndex = selectedCards.findIndex((c) => c.id === card.id);
     if (cardIndex !== -1 && card.id !== undefined && inGameCards.length < 3) {
       const newSelectedCards = [...selectedCards];
@@ -136,6 +135,120 @@ const App = () => {
       setInGameCards([...inGameCards, card]);
     }
   };
+
+  // Logic of the game
+  const checkCards = () => {
+    if (inGameCards.length === 3) {
+
+      // The same Color
+      const colors = inGameCards.map((card) => card.color);
+      const sameColor = colors.every((color) => color === colors[0]);
+
+      // Consecutive numbers
+      const numbers = inGameCards.map((card) => card.number);
+      numbers.sort((a, b) => a - b);
+      const consecutiveNumbers = numbers.every(
+        (number, index) => number === numbers[0] + index
+      );
+      // The same numbers
+      const sameNumbers = numbers.every((number) => number === numbers[0]);
+      // Different colors
+      const differentColor = colors.some((color) => color !== colors[0]);
+
+      if (sameColor && consecutiveNumbers) {
+        return "validColor";
+      } else if (differentColor && consecutiveNumbers) {
+        return "invalidColor";
+      } else if (differentColor && sameNumbers) {
+        return "invalidColorAndNumbers";
+      } else {
+        return "noMatches";
+      }
+    }
+  };
+
+
+  // Checking cards and adding the appropriate number of points
+  useEffect(() => {
+
+    const result = checkCards();
+
+    // Valid colors y,y,y and valid numbers 1,2,3
+    if (result === "validColor") {
+      const maxNumber = Math.max(...inGameCards.map((card) => card.number));
+
+      let points = 40;
+      for (let i = 3; i <= maxNumber; i++) {
+        points += 10;
+      }
+      // Show the number of points
+      console.log(points)
+
+      // Set the card to fade after time
+      setTimeout(() => {
+        setInGameCards([]);
+      }, 1250);
+
+      // Invalid colors y,r,y and valid numbers 1,2,3
+    } else if (result === "invalidColor") {
+      const minNumber = Math.min(...inGameCards.map((card) => card.number));
+
+      let points = 0;
+      for (let i = 1; i <= minNumber; i++) {
+        points += 10;
+      }
+
+      console.log(points)
+
+      setTimeout(() => {
+        setInGameCards([]);
+      }, 1250);
+
+      // Invalid colors y,r,b and invalid numbers 1,1,1
+    } else if (result === "invalidColorAndNumbers") {
+      const Number = inGameCards[0].number;
+
+      let points = 10;
+      for (let i = 1; i <= Number; i++) {
+        points += 10;
+      }
+
+      console.log(points)
+
+      setTimeout(() => {
+        setInGameCards([]);
+      }, 1250);
+
+      // Invalid numbers 1,4,2
+    } else if (result === "noMatches") {
+      console.log(result)
+
+      setTimeout(() => {
+        const newSelectedCards = [...selectedCards];
+
+        // Check where the empty spaces are
+        let emptyIndexes = [];
+        newSelectedCards.forEach((card, i) => {
+          if (card.id === undefined) {
+            emptyIndexes.push(i);
+          }
+        });
+
+        if (emptyIndexes.length > 3) {
+          emptyIndexes = emptyIndexes.slice(0, 3);
+        }
+
+        emptyIndexes.forEach((emptyIndex, i) => {
+          newSelectedCards.splice(emptyIndex, 1, inGameCards[i]);
+        });
+
+        setSelectedCards(newSelectedCards);
+
+        const newInGameCards = [];
+        setInGameCards(newInGameCards);
+      }, 300);
+    }
+  }, [inGameCards]);
 
   return (
     <>
