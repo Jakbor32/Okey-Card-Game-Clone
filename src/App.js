@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Board from './components/Board/Board';
 import Cards from './components/Cards/Cards'
-import AddCard from "./components/Cards/AddCard";
+import AddCard from './components/Cards/AddCard';
 import allCards from './allCards.js';
+import Score from './components/Board/Score'
+import AmountOfCards from './components/Board/AmountOfCards'
+import Points from './components/Board/Points'
 
 import styles from './../src/App.module.css';
 
@@ -11,6 +14,10 @@ const App = () => {
   const [selectedCards, setSelectedCards] = useState([]);
   const [runSelectRandomCards, setRunSelectRandomCards] = useState(false);
   const [remainingCards, setRemainingCards] = useState([]);
+
+  const [amountOfCards, setAmountOfCards] = useState(24);
+  const [points, setPoints] = useState();
+  const [score, setScore] = useState(0);
 
   const [inGameCards, setInGameCards] = useState([]);
   // select 5 random cards from the board
@@ -80,6 +87,12 @@ const App = () => {
     }
     setRemainingCards(remainingCards);
 
+    // Update the number of remaining cards
+    if (amountOfCards === 24) {
+      setAmountOfCards(19);
+    } else {
+      setAmountOfCards(remainingCards.length);
+    }
   };
 
   // Delete the card by right clicking with the mouse
@@ -166,6 +179,9 @@ const App = () => {
       }
     }
   };
+  useEffect(() => {
+    setPoints(null);
+  }, [checkCards()]);
 
 
   // Checking cards and adding the appropriate number of points
@@ -184,6 +200,10 @@ const App = () => {
       // Show the number of points
       console.log(points)
 
+      // Update points and score
+      setScore(score + points);
+      setPoints(points);
+
       // Set the card to fade after time
       setTimeout(() => {
         setInGameCards([]);
@@ -199,6 +219,8 @@ const App = () => {
       }
 
       console.log(points)
+      setScore(score + points);
+      setPoints(points);
 
       setTimeout(() => {
         setInGameCards([]);
@@ -213,7 +235,8 @@ const App = () => {
         points += 10;
       }
 
-      console.log(points)
+      setScore(score + points);
+      setPoints(points);
 
       setTimeout(() => {
         setInGameCards([]);
@@ -255,6 +278,9 @@ const App = () => {
       <section className={styles.section} onContextMenu={(e) => e.preventDefault()}>
         <h1>Okey Card Game</h1>
         <Board />
+        <AmountOfCards amountOfCards={amountOfCards} />
+        <Score score={score} />
+        <Points points={points} />
         <AddCard addCard={addCard} />
         <div className={styles.cards}>
           {selectedCards.map((card) => {
