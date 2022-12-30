@@ -1,3 +1,13 @@
+@font-face {
+    font-family: tahomaPixel;
+    src: url(../public/fonts/fs-tahoma-8px.ttf);
+}
+
+* {
+    cursor: url(../public/cursor.cur), auto;
+    font-family: tahomaPixel;
+}
+
 body {
     margin: 0;
     padding: 0;
