@@ -6,6 +6,7 @@ import allCards from './allCards.js';
 import Score from './components/Board/Score'
 import AmountOfCards from './components/Board/AmountOfCards'
 import Points from './components/Board/Points'
+import Success from "./components/Board/Success";
 
 import styles from './../src/App.module.css';
 
@@ -18,6 +19,7 @@ const App = () => {
   const [amountOfCards, setAmountOfCards] = useState(24);
   const [points, setPoints] = useState();
   const [score, setScore] = useState(0);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const [inGameCards, setInGameCards] = useState([]);
   // select 5 random cards from the board
@@ -204,9 +206,13 @@ const App = () => {
       setScore(score + points);
       setPoints(points);
 
+      // Show success if the cards match
+      setShowSuccess(true);
+
       // Set the card to fade after time
       setTimeout(() => {
         setInGameCards([]);
+        setShowSuccess(false);
       }, 1250);
 
       // Invalid colors y,r,y and valid numbers 1,2,3
@@ -221,9 +227,11 @@ const App = () => {
       console.log(points)
       setScore(score + points);
       setPoints(points);
+      setShowSuccess(true);
 
       setTimeout(() => {
         setInGameCards([]);
+        setShowSuccess(false);
       }, 1250);
 
       // Invalid colors y,r,b and invalid numbers 1,1,1
@@ -237,9 +245,11 @@ const App = () => {
 
       setScore(score + points);
       setPoints(points);
+      setShowSuccess(true);
 
       setTimeout(() => {
         setInGameCards([]);
+        setShowSuccess(false);
       }, 1250);
 
       // Invalid numbers 1,4,2
@@ -282,6 +292,7 @@ const App = () => {
         <Score score={score} />
         <Points points={points} />
         <AddCard addCard={addCard} />
+        {showSuccess && <Success />}
         <div className={styles.cards}>
           {selectedCards.map((card) => {
             return (
