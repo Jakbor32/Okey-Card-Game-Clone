@@ -1,0 +1,63 @@
+.modal {
+    width: 350px;
+    z-index: 2;
+    animation: flash .1s ease-in;
+}
+
+.modal img {
+    width: 330px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.btn-modal {
+    position: relative;
+    padding: 9.5px 27.5px;
+    border-radius: 2px;
+    background-color: transparent;
+    opacity: 0.2;
+
+}
+
+.btn-modal:active {
+    background-color: #000;
+
+}
+
+.btn-modal:hover {
+    background-color: #000;
+
+}
+
+.modal-text {
+    letter-spacing: 1px;
+    font-size: 15px;
+    opacity: 0.8;
+    text-align: center;
+}
+
+.overlay {
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+}
+
+
+@keyframes flash {
+    from {
+        opacity: 0;
+
+    }
+
+    to {
+        opacity: 1;
+
+    }
+}

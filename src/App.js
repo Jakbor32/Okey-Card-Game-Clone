@@ -7,6 +7,7 @@ import Score from './components/Board/Score'
 import AmountOfCards from './components/Board/AmountOfCards'
 import Points from './components/Board/Points'
 import Success from "./components/Board/Success";
+import Modal from "./components/Modal/Modal";
 
 import styles from './../src/App.module.css';
 
@@ -21,8 +22,24 @@ const App = () => {
   const [score, setScore] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
 
+  // Modal text
+  const [modalText, setModalText] = useState("");
+
+  //Check security mode - currently true
+  const [showModal, setShowModal] = useState(false);
+  const [securityMode, setSecurityMode] = useState(true);
+  const [id, setId] = useState(false);
+
   const [inGameCards, setInGameCards] = useState([]);
   // select 5 random cards from the board
+
+
+  // Set new Modal
+  const modal = (id) => {
+    setShowModal(true);
+    setId(id);
+  };
+
 
   const selectRandomCards = () => {
     const cards = [...allCards];
@@ -100,6 +117,18 @@ const App = () => {
   // Delete the card by right clicking with the mouse
 
   const RemoveHandler = (id) => {
+    const cardFound = inGameCards.some((card) => card.id === id);
+    // If security mode === true - show Modal (currently yes)
+    if (securityMode === true && !cardFound) {
+      setModalText("Do you really want to discard this card?");
+      modal(id);
+      return;
+    }
+    handleYesButtonClick(id);
+  };
+
+  // new function to remove card
+  const handleYesButtonClick = (id) => {
     if (id) {
       const cardIndex = selectedCards.findIndex((c) => c.id === id);
       if (cardIndex !== -1) {
@@ -108,6 +137,11 @@ const App = () => {
         setSelectedCards(newSelectedCards);
       }
     }
+    setShowModal(false);
+  };
+
+  const handleNoButtonClick = () => {
+    setShowModal(false);
   };
 
   // After clicking add a card to the game / undo a card from the game
@@ -287,6 +321,15 @@ const App = () => {
     <>
       <section className={styles.section} onContextMenu={(e) => e.preventDefault()}>
         <h1>Okey Card Game</h1>
+        <Modal
+          showModalText={modalText}
+          showModal={showModal}
+          imgSrc={require("./images/emptyModal.png")}
+          setShowModal={setShowModal}
+          id={id}
+          onClickYes={() => handleYesButtonClick(id)}
+          onClickNo={handleNoButtonClick}
+        />
         <Board />
         <AmountOfCards amountOfCards={amountOfCards} />
         <Score score={score} />
