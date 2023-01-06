@@ -334,7 +334,10 @@ const App = () => {
         <AmountOfCards amountOfCards={amountOfCards} />
         <Score score={score} />
         <Points points={points} />
-        <AddCard addCard={addCard} />
+        <AddCard
+          addCard={addCard}
+          amountOfCards={amountOfCards}
+        />
         {showSuccess && <Success />}
         <div className={styles.cards}>
           {selectedCards.map((card) => {

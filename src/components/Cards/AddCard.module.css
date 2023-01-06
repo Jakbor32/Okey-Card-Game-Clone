@@ -7,10 +7,21 @@
     background-color: transparent;
     width: 45px;
     height: 62px;
-    color: #fff;
-    border-radius: 5px;
+
 }
 
 .btn-addcard:active {
     background-color: black;
+}
+
+.card-window-1 {
+    width: 38px;
+}
+
+.card-window-2 {
+    width: 39px;
+}
+
+.card-window-3 {
+    width: 42px;
 }
