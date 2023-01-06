@@ -32,7 +32,7 @@ const AddCard = (props) => {
     return (
 
         <button onClick={props.addCard} className={styles['btn-addcard']}>
-            <img draggable="false" src={imageSrc} className={styles[`card-window` + " " + className]} />
+            <img draggable="false" src={imageSrc} className={styles[className]} />
         </button>
     )
 }
