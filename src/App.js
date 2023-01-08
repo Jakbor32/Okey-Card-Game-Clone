@@ -3,12 +3,16 @@ import Board from './components/Board/Board';
 import Cards from './components/Cards/Cards'
 import AddCard from './components/Cards/AddCard';
 import allCards from './allCards.js';
-import Score from './components/Board/Score'
-import AmountOfCards from './components/Board/AmountOfCards'
+import Score from './components/Board/Score';
+import AmountOfCards from './components/Board/AmountOfCards';
 import Points from './components/Board/Points'
-import Success from "./components/Board/Success";
-import Modal from "./components/Modal/Modal";
-import EndGame from "./components/Board/EndGame";
+import Success from './components/Board/Success';
+import Modal from './components/Modal/Modal';
+import EndGame from './components/Board/EndGame';
+import StartGame from './components/GameplayMenu/StartGame';
+import Rules from './components/GameplayMenu/Rules';
+import SecureMode from './components/GameplayMenu/SecureMode';
+
 
 import styles from './../src/App.module.css';
 
@@ -28,7 +32,7 @@ const App = () => {
 
   //Check security mode - currently true
   const [showModal, setShowModal] = useState(false);
-  const [securityMode, setSecurityMode] = useState(true);
+  const [securityMode, setSecurityMode] = useState(false);
   const [id, setId] = useState(false);
 
   const [inGameCards, setInGameCards] = useState([]);
@@ -36,6 +40,9 @@ const App = () => {
 
   // set end game
   const [endGame, setEndGame] = useState(false);
+
+  // set game status
+  const [game, setGame] = useState(false);
 
   // Set new Modal
   const modal = (id) => {
@@ -324,67 +331,79 @@ const App = () => {
     <>
       <section className={styles.section} onContextMenu={(e) => e.preventDefault()}>
         <h1>Okey Card Game</h1>
-        <Modal
-          showModalText={modalText}
-          showModal={showModal}
-          imgSrc={require("./images/emptyModal.png")}
-          setShowModal={setShowModal}
-          id={id}
-          onClickYes={() => handleYesButtonClick(id)}
-          onClickNo={handleNoButtonClick}
-        />
-        <Board />
-        <AmountOfCards amountOfCards={amountOfCards} />
-        <Score score={score} />
-        <Points points={points} />
-        <AddCard
-          addCard={addCard}
-          amountOfCards={amountOfCards}
-        />
-        <EndGame
-          endGame={endGame}
-          setEndGame={setEndGame}
-          setSecondModal={setShowModal}
-          setScore={setScore}
-          setSelectedCards={setSelectedCards}
-          setRunSelectRandomCards={setRunSelectRandomCards}
-          setInGameCards={setInGameCards}
-          setAmountOfCards={setAmountOfCards}
-        />
-        {showSuccess && <Success />}
-        <div className={styles.cards}>
-          {selectedCards.map((card) => {
-            return (
-              <Cards
-                key={card.id}
-                onContextClick={RemoveHandler}
-                onClick={inGame}
-                cardId={card.id}
-                cardColor={card.color}
-                cardNr={card.number}
-                cardWidth={card.width}
-                cardHeight={card.height}
-              />
-            );
-          })}
-        </div>
-        <div className={styles["card-selected"]}>
-          {inGameCards.map((card) => {
-            return (
-              <Cards
-                onContextClick={RemoveHandler}
-                onClick={inGame}
-                cardId={card.id}
-                cardColor={card.color}
-                cardNr={card.number}
-                key={card.id}
-                cardWidth={card.width}
-                cardHeight={card.height}
-              />
-            );
-          })}
-        </div>
+        {game && (
+          <div className={styles["in-game"]}>
+            <Modal
+              showModalText={modalText}
+              showModal={showModal}
+              imgSrc={require("./images/emptyModal.png")}
+              setShowModal={setShowModal}
+              id={id}
+              onClickYes={() => handleYesButtonClick(id)}
+              onClickNo={handleNoButtonClick}
+            />
+            <Board />
+            <AmountOfCards amountOfCards={amountOfCards} />
+            <Score score={score} />
+            <Points points={points} />
+            <AddCard
+              addCard={addCard}
+              amountOfCards={amountOfCards}
+            />
+            <EndGame
+              endGame={endGame}
+              setEndGame={setEndGame}
+              setSecondModal={setShowModal}
+              setScore={setScore}
+              setSelectedCards={setSelectedCards}
+              setRunSelectRandomCards={setRunSelectRandomCards}
+              setInGameCards={setInGameCards}
+              setAmountOfCards={setAmountOfCards}
+            />
+            {showSuccess && <Success />}
+            <div className={styles.cards}>
+              {selectedCards.map((card) => {
+                return (
+                  <Cards
+                    key={card.id}
+                    onContextClick={RemoveHandler}
+                    onClick={inGame}
+                    cardId={card.id}
+                    cardColor={card.color}
+                    cardNr={card.number}
+                    cardWidth={card.width}
+                    cardHeight={card.height}
+                  />
+                );
+              })}
+            </div>
+            <div className={styles["card-selected"]}>
+              {inGameCards.map((card) => {
+                return (
+                  <Cards
+                    onContextClick={RemoveHandler}
+                    onClick={inGame}
+                    cardId={card.id}
+                    cardColor={card.color}
+                    cardNr={card.number}
+                    key={card.id}
+                    cardWidth={card.width}
+                    cardHeight={card.height}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        )}
       </section>
+      {/* add gameplay board (the player sets the security mode) */}
+      {game || (
+        <section onContextMenu={(e) => e.preventDefault()}>
+          <StartGame setGame={setGame} />
+          <SecureMode onSecureMode={() => setSecurityMode(!securityMode)} />
+          <Rules />
+        </section>
+      )}
     </>
   );
 };
