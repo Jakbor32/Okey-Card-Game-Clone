@@ -8,6 +8,7 @@ import AmountOfCards from './components/Board/AmountOfCards'
 import Points from './components/Board/Points'
 import Success from "./components/Board/Success";
 import Modal from "./components/Modal/Modal";
+import EndGame from "./components/Board/EndGame";
 
 import styles from './../src/App.module.css';
 
@@ -33,6 +34,8 @@ const App = () => {
   const [inGameCards, setInGameCards] = useState([]);
   // select 5 random cards from the board
 
+  // set end game
+  const [endGame, setEndGame] = useState(false);
 
   // Set new Modal
   const modal = (id) => {
@@ -337,6 +340,16 @@ const App = () => {
         <AddCard
           addCard={addCard}
           amountOfCards={amountOfCards}
+        />
+        <EndGame
+          endGame={endGame}
+          setEndGame={setEndGame}
+          setSecondModal={setShowModal}
+          setScore={setScore}
+          setSelectedCards={setSelectedCards}
+          setRunSelectRandomCards={setRunSelectRandomCards}
+          setInGameCards={setInGameCards}
+          setAmountOfCards={setAmountOfCards}
         />
         {showSuccess && <Success />}
         <div className={styles.cards}>

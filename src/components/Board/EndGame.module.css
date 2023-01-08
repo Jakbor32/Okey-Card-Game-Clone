@@ -1,0 +1,36 @@
+.endgame {
+    width: 85px;
+    padding: 9.5px;
+    background-color: transparent;
+
+}
+
+.endgame:active {
+    background-color: black;
+}
+
+.endgame:hover {
+    background-color: black;
+}
+
+.endgame-modal div:nth-child(2) div {
+    /*set position modal */
+}
+
+.endgame-modal div:nth-child(2) div p {
+    margin-bottom: -100px;
+    width: 300px;
+    position: relative;
+    left: 25px;
+    top: -95px;
+}
+
+.endgame-modal div:nth-child(2) div div {
+    position: relative;
+    top: 19px;
+}
+
+
+.endgame-modal div:nth-child(2) div div button:active {
+    background-color: black;
+}
