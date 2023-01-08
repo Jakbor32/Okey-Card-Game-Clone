@@ -1,0 +1,99 @@
+.start-board {
+    width: 345px;
+    position: relative;
+}
+
+.start-board:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.start-game {
+    background-color: transparent;
+    width: 87px;
+    height: 20px;
+    border-radius: 5px;
+    border: none;
+    opacity: 0.2;
+    position: relative;
+    top: -37px;
+    left: 38px;
+    margin-bottom: -25px;
+
+}
+
+.start-game:active {
+    background-color: black;
+}
+
+.start-game:hover {
+    background-color: black;
+}
+
+.start-game-modal div:nth-child(2) div {
+    position: relative;
+    top: -160px;
+    left: 20px;
+    margin-bottom: -200px;
+}
+
+.start-game-modal div:nth-child(2) div img {
+    width: 500px;
+    height: 110px;
+    margin-bottom: -120px;
+}
+
+.start-game-modal div:nth-child(2) div p {
+    left: 15px;
+    margin-bottom: -10px;
+    width: 465px;
+    top: 20px;
+    line-height: 15px;
+
+}
+
+.start-game-modal div:nth-child(2) div div {
+    gap: 25px;
+    top: 40px;
+    left: 75px;
+    margin-bottom: -50px;
+    position: relative;
+
+}
+
+.start-game-modal div:nth-child(2) div div button {
+    padding: 10px 32px;
+
+}
+
+@media only screen and (max-width: 520px) {
+    .start-game-modal div:nth-child(2) div img {
+        width: 340px;
+        height: 110px;
+        position: relative;
+        left: 78px;
+    }
+
+    .start-game-modal div:nth-child(2) div p {
+        left: 95px !important;
+        font-size: 12px;
+        width: 315px;
+        top: 15px;
+        line-height: 15px;
+
+    }
+
+    .start-game-modal div:nth-child(2) div div {
+        gap: 15px;
+        top: 43px;
+        left: 78px;
+        position: relative;
+
+    }
+
+    .start-game-modal div:nth-child(2) div div button {
+        padding: 10px 22px;
+
+
+    }
+}
