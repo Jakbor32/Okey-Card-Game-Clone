@@ -1,5 +1,9 @@
 .success {
     animation: fade-grow .5s ease-in-out;
+    margin-bottom: -42.4px;
+    position: relative;
+    top: -235px;
+    z-index: 3;
 }
 
 @keyframes fade-grow {

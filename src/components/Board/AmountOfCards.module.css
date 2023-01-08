@@ -1,4 +1,12 @@
 .counter {
     font-size: 14px;
     opacity: 0.8;
+    letter-spacing: 1px;
+    position: relative;
+    margin-bottom: -16px;
+    top: -111px;
+    width: 22px;
+    height: 16px;
+    text-align: center;
+    left: 114px;
 }

@@ -1,5 +1,9 @@
 .modal {
     width: 350px;
+    position: relative;
+    bottom: -240px;
+    margin: -100px;
+    left: 100px;
     z-index: 2;
     animation: flash .1s ease-in;
 }
@@ -12,6 +16,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    top: -85px;
     gap: 20px;
 }
 
@@ -35,7 +41,11 @@
 }
 
 .modal-text {
+    position: relative;
+    left: 0px;
+    top: -85px;
     letter-spacing: 1px;
+    bottom: 67.5px;
     font-size: 15px;
     opacity: 0.8;
     text-align: center;

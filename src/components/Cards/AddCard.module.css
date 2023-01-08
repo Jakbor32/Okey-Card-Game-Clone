@@ -4,24 +4,44 @@
 }
 
 .btn-addcard {
+    position: relative;
     background-color: transparent;
+    border: none;
     width: 45px;
     height: 62px;
+    top: -156px;
+    left: 39px;
+    border-radius: 5px;
+    margin-bottom: -62px;
 
 }
 
 .btn-addcard:active {
-    background-color: black;
+    opacity: 0.8;
 }
 
+.card-window:active {
+    opacity: 0.8;
+}
+
+
 .card-window-1 {
+    position: relative;
     width: 38px;
+    left: 4px;
+    top: 2px;
 }
 
 .card-window-2 {
+    position: relative;
     width: 39px;
+    left: 3px;
+    top: 1px;
 }
 
 .card-window-3 {
+    position: relative;
     width: 42px;
+    left: 0;
+    top: 0;
 }

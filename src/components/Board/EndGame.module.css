@@ -2,6 +2,14 @@
     width: 85px;
     padding: 9.5px;
     background-color: transparent;
+    border-radius: 3px;
+    opacity: 0.2;
+    border: none;
+    position: relative;
+    top: -35px;
+    margin-bottom: -19px;
+    left: 134px;
+    z-index: 3;
 
 }
 
@@ -14,7 +22,9 @@
 }
 
 .endgame-modal div:nth-child(2) div {
-    /*set position modal */
+    position: relative;
+    margin-bottom: -100px;
+    top: -135px;
 }
 
 .endgame-modal div:nth-child(2) div p {
@@ -27,7 +37,7 @@
 
 .endgame-modal div:nth-child(2) div div {
     position: relative;
-    top: 19px;
+    top: 17px;
 }
 
 

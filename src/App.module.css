@@ -1,4 +1,7 @@
-.section {
+section {
+    display: grid;
+    position: relative;
+    justify-content: center;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     -webkit-user-select: none;
@@ -7,12 +10,44 @@
 .cards {
     display: flex;
     justify-content: center;
+    width: 350px;
     align-items: center;
+    top: -376px;
+    margin-bottom: -150px;
+    position: relative;
+    gap: 17px;
 
 }
 
 .card-selected {
     display: flex;
+    left: 112px;
+    top: -241.5px;
+    margin-bottom: -150px;
+    position: relative;
+    gap: 0;
+    width: max-content;
+    overflow: hidden;
+}
+
+.in-game {
+    display: grid;
+    position: relative;
     justify-content: center;
-    align-items: center;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-user-select: none;
+
+
+}
+
+h1 {
+    letter-spacing: 2px;
+    font-size: 30px;
+}
+
+@media only screen and (max-width: 520px) {
+    h1 {
+        font-size: 20px;
+    }
 }
