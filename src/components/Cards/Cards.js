@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react';
 
 import availableCards from './../../images/Cards.png';
 
+import styles from './Cards.module.css';
+
 const Cards = (props) => {
 
 
@@ -36,7 +38,9 @@ const Cards = (props) => {
                     id={'Card' + props.cardId}
                     ref={canvasRef}
                     width={42}
-                    height={54}>
+                    height={54}
+                    className={styles['animation-flash']}
+                >
 
                 </canvas>
             </div>

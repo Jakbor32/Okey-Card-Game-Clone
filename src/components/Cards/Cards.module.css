@@ -1,0 +1,20 @@
+.animation-flash {
+    animation: flash .2s ease-in;
+
+}
+
+.animation-flash :nth-child(3) {
+    display: none;
+}
+
+@keyframes flash {
+    from {
+        opacity: 0;
+
+    }
+
+    to {
+        opacity: 1;
+
+    }
+}
