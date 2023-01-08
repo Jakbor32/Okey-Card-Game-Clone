@@ -1,5 +1,3 @@
-# The game is under construction...
-
 ## Game history. Basic rules and gameplay of the game.
 
 Okey Card Game is a popular minigame that originated in the MMORPG [Metin2](https://pl.metin2.gameforge.com/landing/partner). It is often played during the holiday season and is known for its detailed gameplay and strategy.
@@ -9,6 +7,27 @@ In Okey Card Game, players aim to collect points by selecting three cards from a
 The game is divided into different point tiers, with rewards given out based on the number of points a player earns. If a player earns 300 or more points, they will receive a silver Okey chest as a reward. If they earn 400 or more points, they will receive a gold Okey chest. If they earn less than 300 points, they will receive a bronze Okey chest.
 
 Overall, Okey Card Game is a fun and exciting game that requires strategy and skill to excel at. Its popularity in Metin2 and its unique gameplay make it a beloved minigame among players
+
+### Implemented features in the game (reflected as in the real game).
+
+- [x] Game mechanics.
+- [x] Correctly rendering cards exactly as in the actual game using canvas.
+- [x] Discarding cards.
+- [x] Adding cards.
+- [x] Displaying a modal for discarding a card - security mode.
+- [x] Displaying a modal for starting/ending the game.
+- [x] Choosing a game mode: safe or not.
+- [x] Counting the total points obtained in the game.
+- [x] Displaying the points earned for correctly arranging 3 good cards.
+- [x] Displaying a success animation upon correctly arranging 3 cards.
+- [x] Rendering the game table and gameplay board.
+- [x] Mechanism for ending the game.
+- [x] Adding the ability to change the addCard image based on the number of remaining cards to uncover.
+- [x] Adding game rules replicated exactly as in the game.
+- [x] Adapting the game to a responsive version.
+- [x] Displaying the number of remaining cards to uncover.
+- [] Adding a counter for the number of plays.
+- [] Adding a system to assist with playing a deck.
 
 # Getting Started with Create React App
 
