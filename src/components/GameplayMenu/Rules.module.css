@@ -1,0 +1,38 @@
+.rules {
+    position: relative;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-align: left;
+    top: -230px;
+    left: 18px;
+    opacity: 0.8;
+    line-height: 16px;
+    margin-bottom: -150px;
+}
+
+.btns {
+    position: relative;
+    width: fit-content;
+    top: -79px;
+    left: 256px;
+    margin-bottom: -25px;
+    opacity: 0.2;
+    z-index: 1;
+}
+
+.btn-move {
+    background-color: transparent;
+    border: none;
+    margin-left: 9px;
+    padding: 8px 12px;
+    border-radius: 50%;
+
+}
+
+.btn-move:active {
+    background-color: black;
+}
+
+.btn-move:hover {
+    background-color: black;
+}
