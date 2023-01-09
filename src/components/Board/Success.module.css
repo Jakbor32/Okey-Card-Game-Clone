@@ -1,8 +1,9 @@
 .success {
     animation: fade-grow .5s ease-in-out;
     margin-bottom: -42.4px;
-    position: relative;
-    top: -235px;
+    position: absolute;
+    top: 150px;
+    left: 106px;
     z-index: 3;
 }
 

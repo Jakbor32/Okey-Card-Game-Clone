@@ -3,10 +3,10 @@
     border: none;
     width: 35px;
     height: 20px;
-    position: relative;
-    left: 282px;
-    top: -38.5px;
+    position: absolute;
+    left: 283px;
+    top: 340px;
     background-repeat: no-repeat;
     background-position: center;
-    margin-bottom: -20px;
+
 }

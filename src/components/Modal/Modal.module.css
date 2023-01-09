@@ -1,9 +1,8 @@
 .modal {
     width: 350px;
-    position: relative;
-    bottom: -240px;
-    margin: -100px;
-    left: 100px;
+    position: absolute;
+    bottom: 140px;
+    left: 0;
     z-index: 2;
     animation: flash .1s ease-in;
 }
@@ -16,9 +15,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    top: -85px;
-    gap: 20px;
+    position: absolute;
+    top: 61px;
+    left: 106px;
+    gap: 21px;
 }
 
 .btn-modal {
@@ -27,6 +27,7 @@
     border-radius: 2px;
     background-color: transparent;
     opacity: 0.2;
+    border-radius: 5px;
 
 }
 
@@ -41,9 +42,9 @@
 }
 
 .modal-text {
-    position: relative;
-    left: 0px;
-    top: -85px;
+    position: absolute;
+    left: 67.5px;
+    top: 17.5px;
     letter-spacing: 1px;
     bottom: 67.5px;
     font-size: 15px;

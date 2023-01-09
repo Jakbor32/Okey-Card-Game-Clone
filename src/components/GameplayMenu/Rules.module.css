@@ -1,21 +1,20 @@
 .rules {
-    position: relative;
+    position: absolute;
     font-size: 15px;
     letter-spacing: 1px;
     text-align: left;
-    top: -230px;
-    left: 18px;
+    top: 150px;
+    left: 25px;
     opacity: 0.8;
     line-height: 16px;
     margin-bottom: -150px;
 }
 
 .btns {
-    position: relative;
+    position: absolute;
     width: fit-content;
-    top: -79px;
-    left: 256px;
-    margin-bottom: -25px;
+    top: 301px;
+    left: 260px;
     opacity: 0.2;
     z-index: 1;
 }
@@ -24,7 +23,7 @@
     background-color: transparent;
     border: none;
     margin-left: 9px;
-    padding: 8px 12px;
+    padding: 8px 10px;
     border-radius: 50%;
 
 }

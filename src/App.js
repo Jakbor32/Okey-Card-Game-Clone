@@ -399,9 +399,11 @@ const App = () => {
       {/* add gameplay board (the player sets the security mode) */}
       {game || (
         <section onContextMenu={(e) => e.preventDefault()}>
-          <StartGame setGame={setGame} />
-          <SecureMode onSecureMode={() => setSecurityMode(!securityMode)} />
-          <Rules />
+          <div className={styles.container}>
+            <StartGame setGame={setGame} />
+            <SecureMode onSecureMode={() => setSecurityMode(!securityMode)} />
+            <Rules />
+          </div>
         </section>
       )}
     </>

@@ -5,8 +5,8 @@
     border-radius: 3px;
     opacity: 0.2;
     border: none;
-    position: relative;
-    top: -35px;
+    position: absolute;
+    top: 350px;
     margin-bottom: -19px;
     left: 134px;
     z-index: 3;
@@ -22,24 +22,22 @@
 }
 
 .endgame-modal div:nth-child(2) div {
-    position: relative;
-    margin-bottom: -100px;
-    top: -135px;
+    position: absolute;
+    top: 140px;
 }
 
 .endgame-modal div:nth-child(2) div p {
     margin-bottom: -100px;
     width: 300px;
-    position: relative;
+    position: absolute;
     left: 25px;
-    top: -95px;
+    top: 10px;
 }
 
 .endgame-modal div:nth-child(2) div div {
-    position: relative;
-    top: 17px;
+    position: absolute;
+    top: 62px;
 }
-
 
 .endgame-modal div:nth-child(2) div div button:active {
     background-color: black;
