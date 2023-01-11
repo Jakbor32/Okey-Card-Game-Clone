@@ -26,12 +26,16 @@ Overall, Okey Card Game is a fun and exciting game that requires strategy and sk
 - [x] Adding game rules replicated exactly as in the game.
 - [x] Adapting the game to a responsive version.
 - [x] Displaying the number of remaining cards to uncover.
-- [ ] Adding a counter for the number of plays.
+- [x] Adding a counter for the number of plays.
 - [ ] Adding a system to assist with playing a deck.
 
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Check out this mini-game here:
+
+https://okey-card-game.netlify.app
 
 ## Available Scripts
 
