@@ -4,7 +4,7 @@ import styles from './EndGame.module.css'
 
 import emptyModal from '../../images/emptyModal.png'
 
-const EndGame = ({ setScore, setSelectedCards, setInGameCards, setAmountOfCards, setRunSelectRandomCards, setSecondModal, endGame, setEndGame }) => {
+const EndGame = ({ score, setScore, setSelectedCards, setInGameCards, setAmountOfCards, setRunSelectRandomCards, setSecondModal, endGame, setEndGame, setUpdateChest }) => {
 
     const [showModal, setShowModal] = useState(false);
     const [showModalText, setShowModalText] = useState("");
@@ -19,6 +19,8 @@ const EndGame = ({ setScore, setSelectedCards, setInGameCards, setAmountOfCards,
 
     const handleYes = () => {
         setEndGame(!endGame);
+        // set the number of points to state
+        setUpdateChest(score)
         resetGame();
         setShowModal(false);
     }

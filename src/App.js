@@ -12,7 +12,7 @@ import EndGame from './components/Board/EndGame';
 import StartGame from './components/GameplayMenu/StartGame';
 import Rules from './components/GameplayMenu/Rules';
 import SecureMode from './components/GameplayMenu/SecureMode';
-
+import YourGames from "./components/YourGames/YourGames"
 
 import styles from './../src/App.module.css';
 
@@ -43,6 +43,9 @@ const App = () => {
 
   // set game status
   const [game, setGame] = useState(false);
+
+  // set your chest count to 0
+  const [updateChest, setUpdateChest] = useState(0);
 
   // Set new Modal
   const modal = (id) => {
@@ -356,6 +359,8 @@ const App = () => {
               setSecondModal={setShowModal}
               setScore={setScore}
               setSelectedCards={setSelectedCards}
+              setUpdateChest={setUpdateChest}
+              score={score}
               setRunSelectRandomCards={setRunSelectRandomCards}
               setInGameCards={setInGameCards}
               setAmountOfCards={setAmountOfCards}
@@ -406,6 +411,14 @@ const App = () => {
           </div>
         </section>
       )}
+      <section>
+        <YourGames
+          endGame={endGame}
+          updateChest={updateChest}
+
+        />
+      </section>
+
     </>
   );
 };
