@@ -23,8 +23,15 @@ const SoundPlayer = () => {
             audio.addEventListener("canplay", () => {
                 audio.play();
             });
+            audio.addEventListener("ended", () => {
+                audio.src = `https://sndup.net/${soundUrls[currentPlayingIndex]}/a`;
+                audio.play();
+            });
+            return () => {
+                audio.removeEventListener("ended", () => { });
+            }
         }
-    }, [audio]);
+    }, [audio, currentPlayingIndex]);
 
     const handleClick = (index) => {
 
@@ -53,8 +60,8 @@ const SoundPlayer = () => {
         if (isPlaying) {
             audio.pause();
             setIsPlaying(false);
-            setTimeout(() => setIsChecked(false), 300);
         }
+        setTimeout(() => setIsChecked(false), 300);
     }
 
     const data = [
