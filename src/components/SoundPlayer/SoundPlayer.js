@@ -63,7 +63,7 @@ const SoundPlayer = () => {
         { src: desert_monster, onClick: () => handleClick(2) },
         { src: orc_valley_monster, onClick: () => handleClick(3) },
         { src: xmas, onClick: () => handleClick(4) },
-        { src: mute, onClick: () => handleMute },
+        { src: mute, onClick: handleMute },
     ];
 
     return (
