@@ -27,6 +27,7 @@ Overall, Okey Card Game is a fun and exciting game that requires strategy and sk
 - [x] Adapting the game to a responsive version.
 - [x] Displaying the number of remaining cards to uncover.
 - [x] Adding a counter for the number of plays.
+- [x] Adding the functionality of selecting a favorite music during the game.
 - [ ] Adding a system to assist with playing a deck.
 
 # Getting Started with Create React App
