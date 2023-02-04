@@ -7,10 +7,10 @@ import gold from '../../images/gold_chest.png';
 
 const YourGames = ({ updateChest, endGame }) => {
     let score = updateChest;
-    console.log(score)
-    const [field1, setField1] = useState(-1);
-    const [field2, setField2] = useState(0);
-    const [field3, setField3] = useState(0);
+
+    const [field1, setField1] = useState(parseInt(localStorage.getItem('field1')) || 0);
+    const [field2, setField2] = useState(parseInt(localStorage.getItem('field2')) || 0);
+    const [field3, setField3] = useState(parseInt(localStorage.getItem('field3')) || 0);
 
     // save number in localStorage
     const [games, setGames] = useState(parseInt(localStorage.getItem('games')) || 0);
@@ -26,6 +26,9 @@ const YourGames = ({ updateChest, endGame }) => {
         }
         setGames(games + 1)
         localStorage.setItem('games', games);
+        localStorage.setItem('field1', field1);
+        localStorage.setItem('field2', field2);
+        localStorage.setItem('field3', field3);
 
 
     }, [endGame])
@@ -37,7 +40,7 @@ const YourGames = ({ updateChest, endGame }) => {
                 <table>
                     <tbody>
                         <tr>
-                            <td><img src={bronze} /> {field1}</td>
+                            <td><img src={bronze} /> {field1 - 1}</td>
                             <td><img src={silver} />{field2}</td>
                             <td><img src={gold} />{field3}</td>
                         </tr>
