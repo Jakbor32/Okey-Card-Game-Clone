@@ -1,0 +1,265 @@
+.all-cards {
+    width: 450px;
+    position: relative;
+    margin: 0 auto;
+
+}
+
+.all-cards div {
+    padding: 5px;
+
+    float: left;
+}
+
+.all-cards div canvas {
+    transform: scale(1);
+}
+
+.all-cards div:hover {
+    opacity: 0.9;
+}
+
+.checked {
+    transition: .1s linear;
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    filter: grayscale(100%);
+    opacity: 0.3;
+}
+
+.btn-reset-deck {
+    border: none;
+    padding: 8px 20px;
+    font-size: .8em;
+    color: white;
+    background-color: #010501;
+    position: relative;
+    margin-top: 10px;
+    left: -20px;
+    letter-spacing: 1.2px;
+    border-radius: 5px;
+}
+
+.btn-reset-deck:hover {
+    opacity: 0.8;
+}
+
+.all-cards img {
+    width: 20px;
+    position: relative;
+}
+
+.movebtn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 20px;
+    height: 20px;
+}
+
+
+/*  MENU */
+
+
+.menu-open-button {
+    background: #2E302C;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    margin-left: -25px;
+    padding: 10%;
+    position: absolute;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 50px;
+    transform: translate3d(0, 0, 0);
+    transition: transform ease-out 200ms;
+    border: 3px double #000;
+}
+
+.menu-item {
+    transform: translate3d(0, 0, 0);
+    position: absolute;
+}
+
+
+
+.menu-open {
+    display: none;
+}
+
+.menu-open:checked~.menu-item {
+    opacity: 1;
+    transition-duration: 180ms;
+    transform: translate3d(50px, -250px, 0) !important;
+
+
+}
+
+.menu-open~.menu-item {
+    opacity: 0;
+    transform: translate3d(-300px, 600px, 0);
+
+}
+
+
+.menu {
+    position: fixed;
+    bottom: 100px;
+    left: 100px;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 26px;
+}
+
+
+
+
+.menu-open-button {
+    z-index: 2;
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition-duration: 400ms;
+    transform: scale(1.1, 1.1) translate3d(0, 0, 0);
+    box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
+}
+
+.menu-open-button:hover {
+    transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+}
+
+.menu-open:checked:hover+.menu-open-button {
+    transform: scale(0.9, 0.9) translate3d(0, 0, 0);
+
+}
+
+.menu-open:checked+.menu-open-button {
+    transition-timing-function: linear;
+    transition-duration: 200ms;
+    transform: scale(1, 1) translate3d(0, 0, 0);
+
+}
+
+.menu-open:checked~.menu-item {
+    transition: .5s ease-in-out;
+}
+
+.menu-open:checked~.menu-item:hover {
+    filter: brightness(120%);
+}
+
+.imghelper {
+    width: 65px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+.dragbtn {
+    position: absolute;
+    background-color: transparent;
+    width: max-content;
+    height: max-content;
+    filter: brightness(0) invert(1);
+    border: none;
+    top: 210px;
+    left: 270px;
+}
+
+.dragbtn img {
+    width: 25px;
+}
+
+/* Small devices */
+
+
+@media only screen and (max-width: 920px) {
+    .menu {
+        bottom: 10px;
+        left: 25px;
+    }
+
+    .menu-item {
+        left: 30px;
+        top: 10px;
+    }
+
+}
+
+@media only screen and (max-width: 640px) {
+
+    .menu-item {
+        left: 20px;
+    }
+
+
+}
+
+@media only screen and (max-width: 550px) {
+
+
+    .menu {
+        bottom: 10px;
+        left: 0px;
+    }
+
+    .menu-item {
+        left: -40px;
+    }
+
+
+}
+
+@media only screen and (max-width: 440px) {
+
+
+    .menu-item {
+        left: -30px;
+
+    }
+
+
+    .all-cards div {
+        transform: scale(0.8);
+        width: 30px;
+        height: 40px;
+    }
+
+    .all-cards {
+        width: 350px !important;
+    }
+
+    .menu-open:checked~.menu-item {
+        position: absolute;
+        left: 20%;
+        transform: translate(0, -90%) !important;
+
+
+    }
+
+    .dragbtn {
+        left: 230px;
+        top: 165px;
+    }
+}
+
+@media screen and (height: 500px) and (orientation:landscape) {
+
+
+    .dragbtn {
+        display: none;
+    }
+
+    .menu-open:checked~.menu-item {
+        position: absolute;
+        left: 10%;
+
+
+    }
+}
