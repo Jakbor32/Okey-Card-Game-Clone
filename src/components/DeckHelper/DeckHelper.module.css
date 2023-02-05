@@ -213,6 +213,10 @@
         left: -40px;
     }
 
+    .dragbtn {
+        display: none;
+    }
+
 
 }
 
@@ -246,6 +250,7 @@
     .dragbtn {
         left: 230px;
         top: 165px;
+        display: none;
     }
 }
 
