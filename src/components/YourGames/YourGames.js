@@ -17,21 +17,25 @@ const YourGames = ({ updateChest, endGame }) => {
 
     // add 1 depending on the points earned
     useEffect(() => {
-        if (score > 400) {
-            setField3(field3 + 1);
-        } else if (score >= 300 && score <= 399) {
+        if (score >= 300 && score <= 399) {
             setField2(field2 + 1);
+        } else if (score > 400) {
+            setField3(field3 + 1);
         } else {
             setField1(field1 + 1);
         }
         setGames(games + 1)
-        localStorage.setItem('games', games);
-        localStorage.setItem('field1', field1);
-        localStorage.setItem('field2', field2);
-        localStorage.setItem('field3', field3);
-
 
     }, [endGame])
+
+
+    useEffect(() => {
+
+        localStorage.setItem('games', games - 1);
+        localStorage.setItem('field1', field1 - 1);
+        localStorage.setItem('field3', field3);
+        localStorage.setItem('field2', field2);
+    }, [games])
 
 
     return (
