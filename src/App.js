@@ -49,6 +49,9 @@ const App = () => {
   // set your chest count to 0
   const [updateChest, setUpdateChest] = useState(0);
 
+  // Set the loading of the board first
+  const [boardLoaded, setBoardLoaded] = useState(false);
+
   // Set new Modal
   const modal = (id) => {
     setShowModal(true);
@@ -332,6 +335,11 @@ const App = () => {
     }
   }, [inGameCards]);
 
+  // Load addcard once the board has been loaded."
+  useEffect(() => {
+    setBoardLoaded(true);
+  }, [Board]);
+
   return (
     <>
       <section className={styles.section} onContextMenu={(e) => e.preventDefault()}>
@@ -351,10 +359,7 @@ const App = () => {
             <AmountOfCards amountOfCards={amountOfCards} />
             <Score score={score} />
             <Points points={points} />
-            <AddCard
-              addCard={addCard}
-              amountOfCards={amountOfCards}
-            />
+            {boardLoaded && <AddCard addCard={addCard} amountOfCards={amountOfCards} />}
             <EndGame
               endGame={endGame}
               setEndGame={setEndGame}
