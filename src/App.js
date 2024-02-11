@@ -74,6 +74,10 @@ const App = () => {
     setNewPassword(password);
     setShowNameInput(false);
   };
+  
+  const closeBox = () => {
+    setShowNameInput(false);
+  }
 
   const selectRandomCards = () => {
     const cards = [...allCards];
@@ -441,7 +445,7 @@ const App = () => {
         name={newName}
         password={newPassword}
       />
-      {showNameInput && <InsertYourName onSave={onSave} />}
+      {showNameInput && <InsertYourName onSave={onSave} closeBox={closeBox} />}
     </>
   );
 };

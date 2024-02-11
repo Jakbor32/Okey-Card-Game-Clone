@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import supabase from "../../utils/supabase";
 import styles from "./InsertYourName.module.css";
 
-const InsertYourName = ({ onSave }) => {
+const InsertYourName = ({ onSave, closeBox }) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState(null);
   const [correctPassword, setCorrectPassword] = useState("");
@@ -146,7 +146,7 @@ const InsertYourName = ({ onSave }) => {
             </button>
           </div>
         )}
-        <button className={styles.exitbutton} onClick={() => onSave(name)}>
+        <button className={styles.exitbutton} onClick={() => closeBox()}>
           X
         </button>
         <button className={styles.infobutton} onClick={() => setOpenInfo(true)}>

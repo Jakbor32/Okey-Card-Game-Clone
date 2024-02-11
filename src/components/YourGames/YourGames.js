@@ -40,11 +40,16 @@ const YourGames = ({ updateChest, endGame, name }) => {
           .eq("Name", name);
       } else {
         // Update bronze count
+        try{
         await supabase
           .from("Scores")
-          .update({ bronze: yourAccount[0].bronze + 1 })
-          .eq("Name", name);
-      }
+
+            .update({ bronze: yourAccount[0].bronze + 1 })
+            .eq("Name", name);
+          }catch{
+            return;
+          }
+          }
          // Update games count
       await supabase
         .from("Scores")
@@ -65,7 +70,6 @@ const YourGames = ({ updateChest, endGame, name }) => {
         console.error("Error checking existing name:", error.message);
       } else {
         if (yourAccount.length > 0) {
-          console.log(yourAccount);
           setField1(yourAccount[0].bronze);
           setField2(yourAccount[0].silver);
           setField3(yourAccount[0].gold);
