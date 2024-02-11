@@ -5,7 +5,7 @@ import styles from './StartGame.module.css';
 import largerModal from '../../images/largerModal.png';
 import gameplayBoard from './../../images/introduction.png';
 
-const StartGame = ({ setGame }) => {
+const StartGame = ({ setGame, setShowNameInput }) => {
     const [showModal, setShowModal] = useState(false);
     const [showModalText, setShowModalText] = useState("");
     const showModalYang = () => {
@@ -18,6 +18,7 @@ const StartGame = ({ setGame }) => {
     // Give the player the choice to start the game or confirm if they really want to start the game
     const handleYes = () => {
         setGame(true)
+        setShowNameInput(true)
     }
     const handleNo = () => {
         setShowModal(false)

@@ -1,0 +1,67 @@
+.scoreBoard {
+  width: max-content;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-bottom: 30px;
+}
+
+.scoreBoardExpanded {
+  width: 200px;
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background-image: url("../../images/background.png");
+  border: 3px groove #000;
+}
+
+.toggleButton {
+  background-color: #000;
+  color: #fff;
+  font-size: 16px;
+  padding: 5px 10px;
+}
+.toggleButtonExpanded {
+  background-color: #000;
+  color: #fff;
+  font-size: 16px;
+  padding: 5px 10px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10px;
+  z-index: 1000;
+}
+.scoreList {
+  padding: 0 20px 40px 20px;
+  z-index: 1000;
+}
+
+.scoreList h2 {
+  margin-bottom: 5px;
+}
+.scoreList p {
+  font-size: 24px;
+}
+
+.scoreList ol {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.scoreList ol li {
+  margin-bottom: 5px;
+}
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: 0.3;
+  z-index: 999;
+}

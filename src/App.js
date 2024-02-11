@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from "react";
-import Board from './components/Board/Board';
-import Cards from './components/Cards/Cards'
-import AddCard from './components/Cards/AddCard';
-import allCards from './allCards.js';
-import Score from './components/Board/Score';
-import AmountOfCards from './components/Board/AmountOfCards';
-import Points from './components/Board/Points'
-import Success from './components/Board/Success';
-import Modal from './components/Modal/Modal';
-import EndGame from './components/Board/EndGame';
-import StartGame from './components/GameplayMenu/StartGame';
-import Rules from './components/GameplayMenu/Rules';
-import SecureMode from './components/GameplayMenu/SecureMode';
+import Board from "./components/Board/Board";
+import Cards from "./components/Cards/Cards";
+import AddCard from "./components/Cards/AddCard";
+import allCards from "./allCards.js";
+import Score from "./components/Board/Score";
+import AmountOfCards from "./components/Board/AmountOfCards";
+import Points from "./components/Board/Points";
+import Success from "./components/Board/Success";
+import Modal from "./components/Modal/Modal";
+import EndGame from "./components/Board/EndGame";
+import StartGame from "./components/GameplayMenu/StartGame";
+import Rules from "./components/GameplayMenu/Rules";
+import SecureMode from "./components/GameplayMenu/SecureMode";
 import YourGames from "./components/YourGames/YourGames";
 import SoundPlayer from "./components/SoundPlayer/SoundPlayer";
 import DeckHelper from "./components/DeckHelper/DeckHelper";
+import ScoreBoard from "./components/ScoreBoard/ScoreBoard";
+import InsertYourName from "./components/ScoreBoard/InsertYourName.js";
 
-import styles from './../src/App.module.css';
+import styles from "./../src/App.module.css";
 
 const App = () => {
-
   const [selectedCards, setSelectedCards] = useState([]);
   const [runSelectRandomCards, setRunSelectRandomCards] = useState(false);
   const [remainingCards, setRemainingCards] = useState([]);
@@ -46,18 +47,33 @@ const App = () => {
   // set game status
   const [game, setGame] = useState(false);
 
+  // switch visible  of name field
+  const [showNameInput, setShowNameInput] = useState(false);
+
+  // set the default name
+  const [newName, setNewName] = useState("");
+
+  // set the default password
+  const [newPassword, setNewPassword] = useState(null);
+
   // set your chest count to 0
   const [updateChest, setUpdateChest] = useState(0);
 
-  // Set the loading of the board first
+  // set the loading of the board first
   const [boardLoaded, setBoardLoaded] = useState(false);
 
-  // Set new Modal
+  // set new Modal
   const modal = (id) => {
     setShowModal(true);
     setId(id);
   };
 
+  // set new name
+  const onSave = (name, password) => {
+    setNewName(name);
+    setNewPassword(password);
+    setShowNameInput(false);
+  };
 
   const selectRandomCards = () => {
     const cards = [...allCards];
@@ -75,10 +91,9 @@ const App = () => {
 
   useEffect(() => {
     if (runSelectRandomCards) {
-      selectRandomCards()
+      selectRandomCards();
     }
-  }, [runSelectRandomCards])
-
+  }, [runSelectRandomCards]);
 
   // Add 5 cards to the game table
 
@@ -87,19 +102,18 @@ const App = () => {
 
     const randomCards = [];
 
-
-
     let emptySpaces = selectedCards.filter(
-      (card) => card.id === undefined).length;
+      (card) => card.id === undefined
+    ).length;
 
     emptySpaces +=
       inGameCards.length === 1
         ? -1
         : inGameCards.length === 2
-          ? -2
-          : inGameCards.length === 3
-            ? -3
-            : 0;
+        ? -2
+        : inGameCards.length === 3
+        ? -3
+        : 0;
 
     for (let i = 0; i < emptySpaces; i++) {
       if (remainingCards.length === 0) break;
@@ -192,7 +206,7 @@ const App = () => {
     }
   };
 
-  // Move card to game 
+  // Move card to game
   const moveCardToInGame = (card) => {
     const cardIndex = selectedCards.findIndex((c) => c.id === card.id);
     if (cardIndex !== -1 && card.id !== undefined && inGameCards.length < 3) {
@@ -206,7 +220,6 @@ const App = () => {
   // Logic of the game
   const checkCards = () => {
     if (inGameCards.length === 3) {
-
       // The same Color
       const colors = inGameCards.map((card) => card.color);
       const sameColor = colors.every((color) => color === colors[0]);
@@ -237,10 +250,8 @@ const App = () => {
     setPoints(null);
   }, [checkCards()]);
 
-
   // Checking cards and adding the appropriate number of points
   useEffect(() => {
-
     const result = checkCards();
 
     // Valid colors y,y,y and valid numbers 1,2,3
@@ -251,8 +262,6 @@ const App = () => {
       for (let i = 3; i <= maxNumber; i++) {
         points += 10;
       }
-      // Show the number of points
-      console.log(points)
 
       // Update points and score
       setScore(score + points);
@@ -275,8 +284,6 @@ const App = () => {
       for (let i = 1; i <= minNumber; i++) {
         points += 10;
       }
-
-      console.log(points)
       setScore(score + points);
       setPoints(points);
       setShowSuccess(true);
@@ -306,7 +313,7 @@ const App = () => {
 
       // Invalid numbers 1,4,2
     } else if (result === "noMatches") {
-      console.log(result)
+      console.log(result);
 
       setTimeout(() => {
         const newSelectedCards = [...selectedCards];
@@ -342,7 +349,10 @@ const App = () => {
 
   return (
     <>
-      <section className={styles.section} onContextMenu={(e) => e.preventDefault()}>
+      <section
+        className={styles.section}
+        onContextMenu={(e) => e.preventDefault()}
+      >
         <h1>Okey Card Game</h1>
         {game && (
           <div className={styles["in-game"]}>
@@ -359,7 +369,9 @@ const App = () => {
             <AmountOfCards amountOfCards={amountOfCards} />
             <Score score={score} />
             <Points points={points} />
-            {boardLoaded && <AddCard addCard={addCard} amountOfCards={amountOfCards} />}
+            {boardLoaded && (
+              <AddCard addCard={addCard} amountOfCards={amountOfCards} />
+            )}
             <EndGame
               endGame={endGame}
               setEndGame={setEndGame}
@@ -412,21 +424,24 @@ const App = () => {
       {game || (
         <section onContextMenu={(e) => e.preventDefault()}>
           <div className={styles.container}>
-            <StartGame setGame={setGame} />
+            <StartGame setGame={setGame} setShowNameInput={setShowNameInput} />
             <SecureMode onSecureMode={() => setSecurityMode(!securityMode)} />
             <Rules />
           </div>
         </section>
       )}
       <section>
-        <YourGames
-          endGame={endGame}
-          updateChest={updateChest}
-
-        />
+        <YourGames endGame={endGame} updateChest={updateChest} />
       </section>
       <SoundPlayer />
       <DeckHelper />
+      <ScoreBoard
+        yourScore={updateChest}
+        endGame={endGame}
+        name={newName}
+        password={newPassword}
+      />
+      {showNameInput && <InsertYourName onSave={onSave} />}
     </>
   );
 };
