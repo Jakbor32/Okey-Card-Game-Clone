@@ -65,3 +65,16 @@
   opacity: 0.3;
   z-index: 999;
 }
+.top1{
+  color: #deb846;
+}
+.top2{
+  color: #a7a7a7;
+}
+.top3{
+  color: #9f6d5e;
+}
+.top1,.top2,.top3{
+  font-weight: 900;
+  letter-spacing: 1px;
+}

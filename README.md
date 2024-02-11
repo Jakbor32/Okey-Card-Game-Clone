@@ -26,7 +26,7 @@ Overall, Okey Card Game is a fun and exciting game that requires strategy and sk
 - [x] Adding game rules replicated exactly as in the game.
 - [x] Adapting the game to a responsive version.
 - [x] Displaying the number of remaining cards to uncover.
-- [x] Adding a counter for the number of plays.
+- [x] Adding a counter for the number of plays and counting each box separately.
 - [x] Adding the functionality of selecting a favorite music during the game.
 - [x] Adding a system to assist with playing a deck.
 - [x] Adding Supabase with scoreboard and security features for password protection of nicknames.

@@ -4,7 +4,7 @@ import styles from "./InsertYourName.module.css";
 
 const InsertYourName = ({ onSave }) => {
   const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState(null);
   const [correctPassword, setCorrectPassword] = useState("");
   const [confirm, setConfirm] = useState(false);
   const [exist, setExist] = useState(false);

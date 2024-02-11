@@ -36,7 +36,7 @@ const ScoreBoard = ({ yourScore, endGame, name, password }) => {
 
   useEffect(() => {
     async function updateScoreboard() {
-      if (endGame == endGame && yourScore !== 0 && name !== "" ) {
+      if (endGame == endGame && yourScore !== 0 && name !== "") {
         try {
           const { data: existingScores, error } = await supabase
             .from("Scores")
@@ -52,19 +52,38 @@ const ScoreBoard = ({ yourScore, endGame, name, password }) => {
                 .insert([{ Name: name, Score: yourScore, Pass: password }]);
 
               if (insertError) {
-                console.error("Error inserting new score:", insertError.message);
+                console.error(
+                  "Error inserting new score:",
+                  insertError.message
+                );
               } else {
                 console.log("New score added:", newScore);
               }
             } else {
-              const { data: updatedScore, error: updateError } = await supabase
+              // Retrieve the current score from the supabase
+              const { data: currentScore, error: currentError } = await supabase
                 .from("Scores")
-                .update({ Score: yourScore })
-                .eq("Name", name);
+                .select("Score")
+                .eq("Name", name)
+                .single();
 
-              if (updateError) {
-                console.error("Error updating score:", updateError.message);
+              if (currentScore && yourScore > currentScore.Score) {
+                const { data: updatedScore, error: updateError } =
+                  await supabase
+                    .from("Scores")
+                    .update({ Score: yourScore })
+                    .eq("Name", name);
+
+                if (updateError) {
+                  console.error(
+                    "Error updating the score:",
+                    updateError.message
+                  );
+                } else {
+                  return;
+                }
               } else {
+               return;
               }
             }
           }
@@ -80,9 +99,13 @@ const ScoreBoard = ({ yourScore, endGame, name, password }) => {
   return (
     <>
       {isExpanded ? <div className={styles.backdrop}></div> : ""}
-      <div className={isExpanded ? styles.scoreBoardExpanded : styles.scoreBoard}>
+      <div
+        className={isExpanded ? styles.scoreBoardExpanded : styles.scoreBoard}
+      >
         <button
-          className={isExpanded ? styles.toggleButtonExpanded : styles.toggleButton}
+          className={
+            isExpanded ? styles.toggleButtonExpanded : styles.toggleButton
+          }
           onClick={toggleExpanded}
         >
           {isExpanded ? "Close" : "Scoreboard"}
@@ -92,7 +115,7 @@ const ScoreBoard = ({ yourScore, endGame, name, password }) => {
             <p>Top 15 Players</p>
             <ol>
               {scores.map((score, index) => (
-                <li key={index + 1}>
+                <li key={index + 1} className={index === 0 ? styles.top1: null || index === 1 ? styles.top2 : null || index === 2 ? styles.top3 : null}>
                   {index + 1}. {score.Name} - {score.Score} pt
                 </li>
               ))}

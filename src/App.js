@@ -431,7 +431,7 @@ const App = () => {
         </section>
       )}
       <section>
-        <YourGames endGame={endGame} updateChest={updateChest} />
+        <YourGames endGame={endGame} updateChest={updateChest} name={newName} />
       </section>
       <SoundPlayer />
       <DeckHelper />
