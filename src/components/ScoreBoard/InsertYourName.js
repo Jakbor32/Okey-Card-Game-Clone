@@ -9,6 +9,8 @@ const InsertYourName = ({ onSave, closeBox }) => {
   const [confirm, setConfirm] = useState(false);
   const [exist, setExist] = useState(false);
   const [displayError, setDisplayError] = useState(false);
+  const [passwordEntered, setPasswordEntered] = useState(true);
+  const [checkValidName, setCheckValidName] = useState(true);
   const [openInfo, setOpenInfo] = useState(false);
 
   const handleInputChange = (event) => {
@@ -19,7 +21,16 @@ const InsertYourName = ({ onSave, closeBox }) => {
     setPassword(event.target.value);
   };
 
-  const handleSaveName = () => (name ? setConfirm(true) : null);
+  const handleSaveName = () => {
+    if (!name) {
+      setCheckValidName(false);
+      setTimeout(() => {
+        setCheckValidName(true);
+      }, 3000);
+    } else {
+      setConfirm(true);
+    }
+  };
 
   useEffect(() => {
     const checkExistingName = async () => {
@@ -48,7 +59,7 @@ const InsertYourName = ({ onSave, closeBox }) => {
   }, [name]);
 
   const handleSaveClick = () => {
-    if (correctPassword === password || correctPassword === null) {
+    if (correctPassword === password) {
       onSave(name);
     } else {
       setPassword("");
@@ -59,7 +70,12 @@ const InsertYourName = ({ onSave, closeBox }) => {
     }
   };
   const handleSavePassword = () => {
-    onSave(name, password);
+    password !== null ? onSave(name, password) : setPasswordEntered(false);
+    if (passwordEntered === true) {
+      setTimeout(() => {
+        setPasswordEntered(true);
+      }, 3000);
+    }
   };
 
   return (
@@ -68,7 +84,12 @@ const InsertYourName = ({ onSave, closeBox }) => {
       <div className={styles.container}>
         {!confirm && (
           <div className={styles.box}>
-            <p>Enter your name</p>
+            {checkValidName ? (
+              <p>Enter your name</p>
+            ) : (
+              <p>Name cannot be empty</p>
+            )}
+
             <input
               className={styles.inputField}
               type="text"
@@ -83,7 +104,11 @@ const InsertYourName = ({ onSave, closeBox }) => {
         {confirm &&
           (!exist ? (
             <div className={styles.box}>
-              <p>Require password for this nickname?</p>
+              {!passwordEntered ? (
+                <p>Please enter a password or click no</p>
+              ) : (
+                <p>Require password for this nickname?</p>
+              )}
               <input
                 className={styles.inputField}
                 type="password"
@@ -97,10 +122,18 @@ const InsertYourName = ({ onSave, closeBox }) => {
                 >
                   Yes
                 </button>
-                <button className={styles.saveButton} onClick={handleSaveClick}>
+                <button
+                  className={styles.saveButton}
+                  onClick={() => onSave(name)}
+                >
                   No
                 </button>
               </div>
+              <p className={styles.safety}>
+                Please do not input personal passwords or sensitive information.
+                The password provided is for testing purposes only and should
+                not be treated as secure
+              </p>
             </div>
           ) : (
             <div className={styles.box}>
@@ -137,7 +170,7 @@ const InsertYourName = ({ onSave, closeBox }) => {
               time, you can enter the same nickname, and then the game will ask
               you for your password and the points will update to your nickname
             </p>
-            <span className={styles.date} >Added 11 Feb 2024</span>
+            <span className={styles.date}>Added 11 Feb 2024</span>
             <button
               className={styles.exitinfo}
               onClick={() => setOpenInfo(false)}
